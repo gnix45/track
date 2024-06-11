@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Fake travel data generator
 function generateFakeTravelData() {
@@ -23,6 +23,8 @@ function generateFakeTravelData() {
 
 // Store fake travel data in memory
 const fakeTravelData = generateFakeTravelData();
+
+app.use(express.static('public'));
 
 app.get('/track/:hexCode', (req, res) => {
     // For simplicity, return the same fake travel data for any hex code
